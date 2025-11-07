@@ -5,15 +5,35 @@
   "main": "src/main.js",
   "scripts": {
     "start:dev": "node --watch src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "commitlint": "^20.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "husky": "^9.1.7",
     "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "lint-staged": "^16.2.6",
+    "prettier": "3.6.2"
   }
 }
