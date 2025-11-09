@@ -3,46 +3,36 @@
 
 <head>
   <%- include('../partials/head'); %>
+    <title>Edit Article</title>
 </head>
 
-<body class="container">
+<body class="container py-4">
 
   <header>
     <%- include('../partials/header'); %>
   </header>
 
-  <main>
-    <div class="bg-light p-5 rounded-3 mb-4">
-      <h1>Edit Article</h1>
+  <main class="flex-grow-1">
+    <div class="bg-light p-5 rounded-3 mb-4 shadow-sm">
+      <h1 class="mb-4 text-primary">Edit Article</h1>
 
-      <!-- Form for Editing the Blog Post -->
-      <form method="POST" action="/blog/<%= blog._id %>">
-        <!-- Title Field -->
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<%= blog.title %>">
-        </div>
 
-        <!-- Published Date Field -->
-        <div class="mb-3">
-          <label for="published_date" class="form-label">Published Date</label>
-          <input type="date" class="form-control" id="published_date" placeholder="Published date" name="published_date" value="<%= blog.published_date %>">
-        </div>
+      <form action="/blog/<%= blog._id %>?_method=PUT" method="POST">
+        <input type="text" name="title" value="<%= blog.title %>" />
+        <textarea name="content"><%= blog.content %></textarea>
+        <button type="submit">Update Blog</button>
+      </form>
 
-        <!-- Content Field (using innerHTML for the value) -->
-        <div class="mb-3">
-          <label for="content" class="form-label">Content:</label>
-          <textarea id="content" class="form-control" name="content" rows="4" cols="50"><%= blog.content %></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Update Article</button>
+      <hr class="my-4">
+      <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this blog?');">
+        <button type="submit">Delete Blog</button>
       </form>
 
     </div>
   </main>
 
-  <footer>
+  <footer class="mt-5">
     <%- include('../partials/footer'); %>
   </footer>
 
